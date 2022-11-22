@@ -9,7 +9,7 @@ const TodoDisplay = ({setShowModal}) => {
   }
   return (
     <>
-    <div className=' h-[95vh] w-full flex flex-col items-center justify-center bg-[#191920] relative'>
+    <div className=' h-[95vh] w-[80vw] flex flex-col items-center justify-center bg-[#191920] relative'>
 
         <div className='  flex flex-wrap gap-[80px] my-20 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
         <TodoCard />

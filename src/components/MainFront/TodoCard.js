@@ -1,8 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 const TodoCard = ({todo}) => {
+
+  const navigate = useNavigate();
+
+  const handleClickOnTodo = ()=>{
+    navigate('/tasks')
+  }
+
   return (
-    <div className='flex flex-col bg-[#21202a] w-[230px] h-[230px] rounded-2xl relative group'>
+    <div onClick={handleClickOnTodo} className='cursor-pointer flex flex-col bg-[#21202a] w-[230px] h-[230px] rounded-2xl relative group'>
       <div className='top-[40%] absolute w-full group-hover:top-[10%]  ease-in-out duration-300'>
         <h1 className='text-[1.6rem] text-[#fd77a1] font-bold text-center ease-in-out duration-300 group-hover:opacity-[.2] group-hover:text-[1.2rem] '>
           OFfice
