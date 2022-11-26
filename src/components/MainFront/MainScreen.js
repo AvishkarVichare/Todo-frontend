@@ -7,18 +7,19 @@ import TaskScreen from '../TaskFront/TaskScreen'
 
 const MainScreen = () => {
 
-  const [showModal, setShowModal] = useState(false);
+  const [showTodoModal, setShowTodoModal] = useState(false);
   return (
     <div className='relative'>
         
 
-    <TodoDisplay setShowModal={setShowModal} />
+    <TodoDisplay setShowTodoModal={setShowTodoModal} />
       
 
     
     {
-      showModal && <TodoModal setShowModal={setShowModal} />
+      showTodoModal && <TodoModal setShowTodoModal={setShowTodoModal} />
     }
+   
     </div>
   )
 }
