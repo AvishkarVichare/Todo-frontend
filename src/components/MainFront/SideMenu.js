@@ -17,14 +17,16 @@ const SideMenu = () => {
 
   useEffect(()=>{
     getTodos();
+    // console.log("In")
   },[])
-  console.log(todos)
+  // console.log(todos)
+  
   return (
     <div className='w-[20vw] h-[95vh] bg-[#21212b] border-2 border-[#191920]'>
         <h1 className='text-[#bbbabf] font-bold text-[1.4rem] ml-8 mt-8'>
           TODOs
         </h1>
-        <div className='text-[#c9c9cb] text-[1.2rem] font-[600]  my-6 '>
+        <div className='text-[#c9c9cb] text-[1.2rem] font-[600]  my-6 h-[80vh] overflow-y-scroll'>
             {
               todos.length==0?<h4 className='text-center mt-20 text-gray-500'>No <span className='text-pink-600'>TODOs</span> yet</h4>:todos.map(element=>{
                 return(
@@ -32,7 +34,7 @@ const SideMenu = () => {
                       <div className={`rounded-xl w-[40px] h-[40px] bg-${element.color}-500`}></div>
                       <h4 className='text-[1.4rem]'>
                         {
-                          element.title
+                          element.title.length>15?element.title.slice(0,14).concat("..."):element.title
                         }
                       </h4>
                   </div>

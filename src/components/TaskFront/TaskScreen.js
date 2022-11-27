@@ -10,7 +10,7 @@ const TaskScreen = () => {
 
   const taskContext = useContext(TaskContext);
   const {tasks, getTasks} = taskContext;
-  const {todoId} = useParams()
+  const {todoId, todoTitle} = useParams()
 
   const [showTaskModal, setShowTaskModal] = useState(false);
 
@@ -37,8 +37,8 @@ const TaskScreen = () => {
         <div className='px-3 py-3 bg-[#21202a] rounded-xl'>
           <img className='invert h-[19px] mx-auto' src={leftArrow} alt="" />
         </div>
-        <h1 className='text-[#cacbcc] text-[2rem]'>
-          Title
+        <h1 className='text-[#cacbcc] text-[2rem] font-bold'>
+          {todoTitle}
         </h1>
       </button>
      </div>

@@ -11,14 +11,13 @@ const TaskModal = ({setShowTaskModal}) => {
 
     const todoId = useParams();
 
-    const handleDone = (e)=>{
+    const handleDone = ()=>{
 
       if(!task){
         alert("enter task add custom alert notification")
         return
       }
         
-        e.preventDefault();
         setShowTaskModal(false);
         addTask(todoId.todoId, task);
 
@@ -32,6 +31,12 @@ const TaskModal = ({setShowTaskModal}) => {
         setTask(e.target.value);
     }
 
+    const handleKeyUp = (e)=>{
+      // console.log(e.key)
+      if(e.code ==='Enter')
+        handleDone()
+    }
+
   return (
     <>
     <div onClick={handleCancle} className='bg-[#161622] opacity-[.85] absolute top-0 h-[95vh] flex justify-center items-center w-full z-[2] ' >
@@ -41,7 +46,7 @@ const TaskModal = ({setShowTaskModal}) => {
        <div>
         <label className='text-[2rem] text-white font-bold' htmlFor="title">Task:</label>
         <br/>
-        <input onChange={handleOnChange} className='w-[650px] mt-10 py-2 pl-3 rounded-xl' name='title' id='title' type="text" />
+        <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[650px] mt-10 py-2 pl-3 rounded-xl' name='title' id='title' type="text" />
         </div>
         <div className='flex text-white justify-end gap-3 mt-2 text-[18px]'>
             <button onClick={handleDone} className='px-6 py-1 rounded-lg bg-[#FD77A1]'>

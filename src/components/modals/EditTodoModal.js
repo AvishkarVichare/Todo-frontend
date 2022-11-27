@@ -2,32 +2,32 @@ import React, { useContext, useState } from 'react'
 import SpinnerContext from '../../context/Spinner/SpinnerContext';
 import TodoContext from '../../context/Todo/TodoContext';
 
-const TodoModal = ({setShowTodoModal}) => {
+const EditTodoModal = ({setShowEditTodoModal, todoToEdit}) => {
+    // console.log(todoToEdit)
 
     const todoContext = useContext(TodoContext);
-    const {createTodo} = todoContext;
+    const {editTodo} = todoContext;
     const spinnerContext = useContext(SpinnerContext);
 
-    const [title, setTitle] = useState("");
-    const [color, setColor] = useState("red");
+    const [title, setTitle] = useState(todoToEdit.current.title);
+    const [color, setColor] = useState(todoToEdit.current.color);
     const {isLoading, setIsLoading} = spinnerContext
 
     const handleDone = ()=>{
 
-      if(!title)
-        alert("enter tilet")
+        if(title.length===0)
+            alert("no empty title   ")
 
-        setIsLoading(true);
-
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 500);
-        setShowTodoModal(false);
-        createTodo(title, color);
+        editTodo(todoToEdit.current._id,{
+            title,
+            color
+        })
+        setShowEditTodoModal(false);
+      
     }
 
     const handleCancle = ()=>{
-      setShowTodoModal(false)
+      setShowEditTodoModal(false)
       }
 
     const handleOnChange = (e)=>{
@@ -46,9 +46,9 @@ const TodoModal = ({setShowTodoModal}) => {
     </div>
     <div className='bg-[#191920] absolute mx-auto top-[30%] z-[10] py-10 px-20 rounded-2xl border-[1px] border-[#A6B2BC]'>
        <div>
-        <label className='text-[2rem] text-white font-bold' htmlFor="title">Todo:</label>
+        <label className='text-[2rem] text-white font-bold' htmlFor="title">Edit Todo:</label>
         <br/>
-        <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[800px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" />
+        <input  onKeyUp={handleKeyUp} onChange={handleOnChange} className='text-[20px] w-[800px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" value={title}  />
         </div>
         <div className='flex flex-col mt-7'>
           <h4 className='font-bold text-white mb-3'>
@@ -75,4 +75,4 @@ const TodoModal = ({setShowTodoModal}) => {
   )
 }
 
-export default TodoModal
+export default EditTodoModal

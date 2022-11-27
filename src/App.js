@@ -5,7 +5,9 @@ import SideMenu from './components/MainFront/SideMenu'
 
 import NavBar from './components/NavBar'
 import ProfileMain from './components/Profile/ProfileMain'
+
 import TaskScreen from './components/TaskFront/TaskScreen'
+import SpinnerState from './context/Spinner/SpinnerState'
 import TaskState from './context/Task/TaskState'
 
 import TodoState from './context/Todo/TodoState'
@@ -22,6 +24,9 @@ const App = () => {
 
     <TodoState>
     <TaskState>
+    <SpinnerState>
+
+
 
 
     <NavBar />
@@ -34,7 +39,7 @@ const App = () => {
 
     
     <Route exact path='/' element={<MainScreen />}></Route>
-    <Route exact path='/:todoId/tasks' element={<TaskScreen />}></Route>
+    <Route exact path='/:todoId/:todoTitle' element={<TaskScreen />}></Route>
     <Route exact path='/profile' element={<ProfileMain />}></Route>
 
     </Routes>
@@ -42,6 +47,7 @@ const App = () => {
     </div>
 
 
+    </SpinnerState>
     
     </TaskState>
     </TodoState>
