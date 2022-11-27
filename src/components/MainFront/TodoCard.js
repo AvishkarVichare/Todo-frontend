@@ -38,7 +38,7 @@ const TodoCard = ({todo, setShowEditTodoModal, todoToEdit}) => {
         </button>
       </div>
 
-    <div onClick={handleClickOnTodo}>
+    <div className='w-[230px] h-[230px]' onClick={handleClickOnTodo}>
     
 
       <div className='top-[40%] absolute w-full group-hover:top-[10%]  ease-in-out duration-300'>

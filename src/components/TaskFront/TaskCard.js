@@ -3,15 +3,16 @@ import { useParams } from 'react-router-dom'
 import TaskContext from '../../context/Task/TaskContext';
 
 const TaskCard = (task) => {
-  const taskContext = useContext(TaskContext);
-  const {checkTask} = taskContext;
-  const todoId = useParams();
-  let checkClicked = useRef(false);
-  const handleCheck = ()=>{
-       
-    checkTask(todoId.todoId,task.task._id)
-  }
 
+  const taskContext = useContext(TaskContext);
+  const {checkTask, tasks} = taskContext;
+  const todoId = useParams();
+
+  const handleCheck = ()=>{
+    checkTask(todoId.todoId,task.task._id)
+
+  }
+// console.log("first")
   return (
     <div className='  bg-[#21202a] px-4 py-3 rounded-2xl group'>
        <div className='flex justify-between'>
@@ -45,11 +46,28 @@ const TaskCard = (task) => {
             </div>
        </div>
 
-       <div className='ease-in-out duration-100 h-0 group-hover:h-[30px] '>
+       <div className='ease-in-out duration-100 h-0 group-hover:h-[30px] flex text-[14px]'>
         <h4 className='text-[#419796] font-bold py-2 ml-10 hidden  group-hover:block'>
+            <span className='mr-2 text-[#fd77a1]'>
+              Created At:
+            </span>
+            <span>
             {
-              task.task.createdat
+              new Date(task.task.taskcreatedat).toUTCString()
             }
+            </span>
+        </h4>
+        <h4 className='text-[#419796] font-bold py-2 ml-10 hidden  group-hover:block'>
+             <span className='mr-2 text-[#fd77a1]'>
+              Updated At:
+            </span> 
+            <span>
+            {
+              
+              new Date(task.task.taskupdatedAt).toUTCString()
+              
+            }
+            </span>
         </h4>
        </div>
         

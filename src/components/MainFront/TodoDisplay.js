@@ -4,26 +4,35 @@ import addLogo from '../../assets/add-btn.svg'
 import TodoContext from '../../context/Todo/TodoContext'
 import Spinner from '../Spinner'
 import SpinnerContext from '../../context/Spinner/SpinnerContext'
+import { useCookies } from "react-cookie";
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
   const todoContext = useContext(TodoContext);
   const spinnerContext = useContext(SpinnerContext);
   const {getTodos, todos} = todoContext;
+  const navigate = useNavigate()
   const {isLoading, setIsLoading} = spinnerContext
-
+  const [cookies, setCookie] = useCookies();
+  const location = useLocation()
+  
   // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if(!cookies.token){
+      console.log("first")
+      navigate('/signup')
+    }
 
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false)
     }, 500);
-    // console.log("in")
+    console.log("in todo display useeffect")
     getTodos();
 
-  }, [])
+  }, [cookies.token])
   
 
   const handleAdd = ()=>{
@@ -41,7 +50,7 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
 
         <div className='  flex flex-wrap gap-[80px] my-20 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
             {
-              isLoading || todos.length===0?<div className='absolute top-[50%] left-[50%]'>
+              isLoading || !todos || todos.length===0 ?<div className='absolute top-[50%] left-[50%]'>
               <Spinner isLoading={true} />
             </div>:todos.map(element=>{
                 return(

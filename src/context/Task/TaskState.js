@@ -1,14 +1,23 @@
 import axios from "axios";
 import { useState } from "react";
 import TodoContext from "./TaskContext";
+import { useCookies } from "react-cookie";
 
 const TaskState = (props)=>{    
+    const [cookies, setCookie] = useCookies();
 
     const [tasks, setTasks] = useState([]);
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'token': `${cookies.token}`
+      }
+
     // getting tasks 
     const getTasks = async(todoId)=>{
-        const res = await axios.get(`/getTasks/${todoId}`);
+        const res = await axios.get(`/getTasks/${todoId}`,{
+            headers
+        });
         // console.log(res.data.tasks);
         setTasks(res.data.tasks);
     }
@@ -17,15 +26,22 @@ const TaskState = (props)=>{
     const addTask = async(todoId, task)=>{
         const res = await axios.put(`/addTask/${todoId}`, {
             main: task
+        },{
+            headers
         });
-        console.log(res);
+        const newTasks = res.data.todo.tasks.slice();
+        // setTasks(res.data.savedTask.tasks.slice())
+        setTasks(newTasks)
     }
 
     // check task
     const checkTask = async(todoId, taskId)=>{
-        const res = await axios.put(`/checkTask/${todoId}/${taskId}`)
+        const res = await axios.put(`/checkTask/${todoId}/${taskId}`,{
+            headers
+        })
         console.log(res);
-        setTasks(res.data.todo.tasks)
+        const newTasks = res.data.todo.tasks.slice();
+        setTasks(newTasks);
     }
 
     return(
