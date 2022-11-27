@@ -49,10 +49,10 @@ const TaskModal = ({setShowTaskModal}) => {
         <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[650px] mt-10 py-2 pl-3 rounded-xl' name='title' id='title' type="text" />
         </div>
         <div className='flex text-white justify-end gap-3 mt-2 text-[18px]'>
-            <button onClick={handleDone} className='px-6 py-1 rounded-lg bg-[#FD77A1]'>
+            <button onClick={handleDone} className='px-6 py-1 rounded-lg bg-[#FD77A1] duration-200 ease-in-out hover:bg-[#ac2e56]'>
                 Done
             </button>
-            <button onClick={handleCancle} className='px-6 py-1 rounded-lg bg-[#87898b]'>
+            <button onClick={handleCancle} className='px-6 py-1 rounded-lg bg-[#87898b] duration-200 ease-in-out hover:bg-[#363637]'>
                 Cancle
             </button>
         </div>

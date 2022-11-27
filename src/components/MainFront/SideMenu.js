@@ -12,8 +12,8 @@ const {tasks} = taskContext
 
   const navigate = useNavigate();
 
-  const handleClickOnTodo = (todo_id)=>{
-    navigate(`/${todo_id}/tasks`)
+  const handleClickOnTodo = (todo_id,title)=>{
+    navigate(`/${todo_id}/${title}`)
   }
 // console.log(todos)
 
@@ -32,7 +32,7 @@ const {tasks} = taskContext
             {
               !todos?<h4 className='text-center mt-20 text-gray-500'>No <span className='text-pink-600'>TODOs</span> yet</h4>:todos.map(element=>{
                 return(
-                  <div key={element._id} onClick={()=>handleClickOnTodo(element._id)} className='hover:bg-[#262632] px-8  py-4 flex justify-between'>
+                  <div key={element._id} onClick={()=>handleClickOnTodo(element._id,element.title)} className='hover:bg-[#262632] px-8  py-4 flex justify-between'>
                       <div className='flex gap-5'>
                       <div className={`rounded-xl w-[40px] h-[40px] bg-${element.color}-500`}></div>
                       <h4 className='text-[1.4rem]'>

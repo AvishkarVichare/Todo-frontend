@@ -14,7 +14,7 @@ const TodoState = (props)=>{
 
     // getting todos 
     const getTodos = async()=>{
-        const res = await axios.get('/getTodos',{
+        const res = await axios.get(`${process.env.REACT_APP_API}/getTodos`,{
             headers
         });
         // console.log(res.data.todos);
@@ -26,7 +26,7 @@ const TodoState = (props)=>{
 
         
 
-        const res = await axios.post('/createTodo',{
+        const res = await axios.post(`${process.env.REACT_APP_API}/createTodo`,{
             title,
             color
         },
@@ -41,7 +41,7 @@ const TodoState = (props)=>{
 
     // delete todo
     const deleteTodo = async(todoId)=>{
-        const res = await axios.delete(`/deleteTodo/${todoId}`,{
+        const res = await axios.delete(`${process.env.REACT_APP_API}/deleteTodo/${todoId}`,{
             headers
         });
         console.log(res)
@@ -51,7 +51,7 @@ const TodoState = (props)=>{
 
     // edit todo 
     const editTodo = async(todoId,editedPart)=>{
-        const res = await axios.put(`/editTodo/${todoId}`,editedPart,{
+        const res = await axios.put(`${process.env.REACT_APP_API}/editTodo/${todoId}`,editedPart,{
             headers
         });
         // const index = todos.indexOf(res.data.editedTodo);

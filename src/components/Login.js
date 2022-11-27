@@ -5,7 +5,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import {toast} from 'react-hot-toast'
 import { useCookies } from "react-cookie";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [cookies, setCookie] = useCookies();
@@ -30,7 +30,7 @@ const Login = () => {
                 return
             }
 
-            const res = await axios.post('v1/u/login',{
+            const res = await axios.post(`${process.env.REACT_APP_API}/v1/u/login`,{
                 email,
                 password
             })
@@ -47,7 +47,7 @@ const Login = () => {
 
   
   return (
-    <div className='flex justify-center items-center h-[100vh] w-full bg-[#191920] text-[#bbbabf]'>
+    <div className='flex flex-col justify-center items-center h-[100vh] w-full bg-[#191920] text-[#bbbabf]'>
        <div className='w-[70%]'>
        <h1 className='text-center text-[3rem] font-bold my-6'>
             Login
@@ -77,6 +77,13 @@ const Login = () => {
             </button>
         </form>
        </div>
+
+       <div className='flex gap-3 text-[18px] mt-10'>
+                <h4 className='font-bold'>
+                    New User?
+                </h4>
+                <Link className='text-[#fd77a1]' to={'/signup'}>Create New Account</Link> here
+            </div>
     </div>
   )
 }

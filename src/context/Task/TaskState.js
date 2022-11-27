@@ -15,7 +15,7 @@ const TaskState = (props)=>{
 
     // getting tasks 
     const getTasks = async(todoId)=>{
-        const res = await axios.get(`/getTasks/${todoId}`,{
+        const res = await axios.get(`${process.env.REACT_APP_API}/getTasks/${todoId}`,{
             headers
         });
         // console.log(res.data.tasks);
@@ -24,7 +24,7 @@ const TaskState = (props)=>{
 
     // add task 
     const addTask = async(todoId, task)=>{
-        const res = await axios.put(`/addTask/${todoId}`, {
+        const res = await axios.put(`${process.env.REACT_APP_API}/addTask/${todoId}`, {
             main: task
         },{
             headers
@@ -36,9 +36,8 @@ const TaskState = (props)=>{
 
     // check task
     const checkTask = async(todoId, taskId)=>{
-        const res = await axios.put(`/checkTask/${todoId}/${taskId}`,{
-            headers
-        })
+        console.log(headers)
+        const res = await axios.put(`${process.env.REACT_APP_API}/checkTask/${todoId}/${taskId}`)
         console.log(res);
         const newTasks = res.data.todo.tasks.slice();
         setTasks(newTasks);

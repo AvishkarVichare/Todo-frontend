@@ -62,7 +62,7 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
 
         {/* add button  */}
 
-        <button onClick={handleAdd} className='bg-[#fd77a1] rounded-[50%] px-4 py-4 absolute right-20 bottom-6'>
+        <button onClick={handleAdd} className='bg-[#fd77a1] rounded-[50%] px-4 py-4 absolute right-20 bottom-6 duration-200 ease-in-out hover:bg-[#ac2e56]'>
           <img className='invert  h-[40px]' src={addLogo} alt="" />
         </button>
 

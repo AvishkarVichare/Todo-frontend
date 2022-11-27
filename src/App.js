@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import MainScreen from './components/MainFront/MainScreen'
@@ -15,6 +16,7 @@ import TaskState from './context/Task/TaskState'
 import TodoState from './context/Todo/TodoState'
 import { useCookies } from "react-cookie";
 import Login from './components/Login';
+import UserState from './context/User/UserState';
 
 const App = () => {
 
@@ -22,10 +24,10 @@ const App = () => {
   const location = useLocation();
   const [cookies, setCookie] = useCookies();
   const navigate = useNavigate()
-  console.log("htis ",cookies)
+  // console.log("htis ",cookies)
   
   
-   
+  //  console.log(process.env.REACT_APP_API)
 
   return (
     <>
@@ -34,6 +36,8 @@ const App = () => {
       <TodoState>
         <TaskState>
           <SpinnerState>
+            <UserState>
+
 
 
             <Toaster
@@ -81,9 +85,8 @@ const App = () => {
 
             </div>
 
-
+            </UserState>
           </SpinnerState>
-
         </TaskState>
       </TodoState>
 

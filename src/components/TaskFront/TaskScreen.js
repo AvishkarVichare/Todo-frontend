@@ -76,8 +76,8 @@ const TaskScreen = () => {
 
 
       {/* add button  */}
-      <button onClick={handleAddTask} className='mt-12 flex gap-3 w-[60%] border-[3px] border-[#1d1d25] px-4 py-3 rounded-2xl'>
-        <div className='bg-[#fd77a1] px-1 py-1 rounded-xl'>
+      <button onClick={handleAddTask} className='mt-12 flex gap-3 w-[60%] border-[3px] border-[#1d1d25] px-4 py-3 rounded-2xl group'>
+        <div className='bg-[#fd77a1] px-1 py-1 rounded-xl duration-200 ease-in-out group-hover:bg-[#ac2e56]'>
           <img className='h-[25px]' src={addLogo} alt="" />
         </div>
         <h4 className='text-[#8e8f92] text-[19px] font-[500]'>
