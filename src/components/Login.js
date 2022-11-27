@@ -35,7 +35,7 @@ const Login = () => {
                 password
             })
             console.log(res)
-            setCookie(res.data.token)
+            setCookie('token',res.data.token)
             navigate('/')
         }
         catch(err){

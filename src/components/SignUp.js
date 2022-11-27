@@ -31,7 +31,8 @@ const SignUp = () => {
                 password
             })
 
-            setCookie(res.data.token)
+            setCookie('token',res.data.token)
+
             navigate('/')
         }
         catch (err) {
