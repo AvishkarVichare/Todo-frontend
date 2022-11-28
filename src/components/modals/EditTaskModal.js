@@ -2,13 +2,16 @@ import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import TaskContext from '../../context/Task/TaskContext';
 import TodoContext from '../../context/Todo/TodoContext';
+import SpinnerContext from '../../context/Spinner/SpinnerContext'
+import {toast} from 'react-hot-toast';
 
 const TaskModal = ({setShowEditTaskModal, taskIdforEdit}) => {
+  const spinnerContext = useContext(SpinnerContext);
+  const {isLoading, setIsLoading} = spinnerContext
 
     const taskContext = useContext(TaskContext);
     const {editTask} = taskContext;
-    const [task, setTask] = useState("");
-
+    const [task, setTask] = useState(taskIdforEdit.main);
     const todoId = useParams();
 
     const handleDone = ()=>{
@@ -17,12 +20,19 @@ const TaskModal = ({setShowEditTaskModal, taskIdforEdit}) => {
         alert("enter task add custom alert notification")
         return
       }
+
+      setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000);
         
         setShowEditTaskModal(false);
-        editTask(todoId.todoId, taskIdforEdit, {
+        editTask(todoId.todoId, taskIdforEdit._id, {
             main:task
         });
-
+        
+        toast.success("Task EDITED successfully")
     }
 
     const handleCancle = ()=>{
@@ -48,7 +58,7 @@ const TaskModal = ({setShowEditTaskModal, taskIdforEdit}) => {
        <div>
         <label className='text-[2rem] text-white font-bold' htmlFor="title">Edit Task:</label>
         <br/>
-        <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[650px] mt-10 py-2 pl-3 rounded-xl' name='title' id='title' type="text" />
+        <input value={task} onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[650px] mt-10 py-2 pl-3 rounded-xl' name='title' id='title' type="text" />
         </div>
         <div className='flex text-white justify-end gap-3 mt-2 text-[18px]'>
             <button onClick={handleDone} className='px-6 py-1 rounded-lg bg-[#FD77A1] duration-200 ease-in-out hover:bg-[#ac2e56]'>

@@ -41,7 +41,7 @@ const [taskIdforEdit, setTaskIdforEdit] = useState("");
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 2000);
 
     getTasks(todoId)
 

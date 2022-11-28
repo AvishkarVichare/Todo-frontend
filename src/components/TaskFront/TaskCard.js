@@ -35,7 +35,7 @@ const TaskCard = ({task, setShowEditTaskModal, setTaskIdforEdit}) => {
   }
 
   const handleClickOnEdit = ()=>{
-    setTaskIdforEdit(task._id)
+    setTaskIdforEdit(task)
     setShowEditTaskModal(true);
   }
 // console.log("first")

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import TrashLogo from '../../assets/trash.svg'
 import EditLogo from '../../assets/edit.png'
 import TodoContext from '../../context/Todo/TodoContext'
+import TaskContext from '../../context/Task/TaskContext'
 import SpinnerContext from '../../context/Spinner/SpinnerContext'
 import {toast} from 'react-hot-toast'
 const TodoCard = ({todo, setShowEditTodoModal, todoToEdit}) => {
@@ -11,6 +12,8 @@ const TodoCard = ({todo, setShowEditTodoModal, todoToEdit}) => {
 
   const navigate = useNavigate();
   const todoContext = useContext(TodoContext);
+  const taskContext = useContext(TaskContext);
+  const{setTasks} = taskContext;
   const {deleteTodo} = todoContext;
 
   const handleClickOnTodo = ()=>{
