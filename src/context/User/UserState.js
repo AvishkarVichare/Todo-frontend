@@ -10,7 +10,7 @@ const UserState = (props)=>{
 
     const headers = {
         'Content-Type': 'application/json',
-        'token': `${cookies.token}`
+        'token': cookies.token
       }
     
     const getUser = async()=>{

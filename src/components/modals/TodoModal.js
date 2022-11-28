@@ -50,11 +50,11 @@ const TodoModal = ({setShowTodoModal}) => {
     <div onClick={handleCancle} className='bg-[#161622] opacity-[.85] absolute top-0 h-[95vh] flex justify-center items-center w-full z-[2] ' >
        
     </div>
-    <div className='bg-[#191920] fixed right-[10%] left-[10%] mx-auto top-[30%]  z-[10] py-10 px-10 sm:px-20 rounded-2xl border-[1px] border-[#A6B2BC]'>
+    <div className='bg-[#191920] fixed w-fit right-[10%] left-[10%] mx-auto top-[30%]  z-[10] py-10 px-10 sm:px-20 rounded-2xl border-[1px] border-[#A6B2BC]'>
        <div>
         <label className='text-[20px] sm:text-[2rem] text-white font-bold' htmlFor="title">Todo:</label>
         <br/>
-        <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[230px] sm:w-[800px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" />
+        <input onKeyUp={handleKeyUp} onChange={handleOnChange} className='w-[230px] sm:w-[600px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" />
         </div>
         <div className='flex flex-col mt-7'>
           <h4 className=' text-[15px] sm:text-basefont-bold text-white mb-3'>

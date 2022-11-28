@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 
 const TodoState = (props)=>{    
     const [cookies, setCookie] = useCookies();
-    const [cookieState, setCookieState] = useState(cookies);
 
 
     const [todos, setTodos] = useState([]);
@@ -69,7 +68,7 @@ const TodoState = (props)=>{
 
     return(
 
-        <TodoContext.Provider value={{getTodos,setTodos, todos, createTodo, deleteTodo, editTodo,cookieState, setCookieState, setCookie, cookies}}>
+        <TodoContext.Provider value={{getTodos,setTodos, todos, createTodo, deleteTodo, editTodo, setCookie, cookies}}>
             {
                 props.children
             }

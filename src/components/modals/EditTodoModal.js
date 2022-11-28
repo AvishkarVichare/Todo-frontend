@@ -49,14 +49,14 @@ const EditTodoModal = ({setShowEditTodoModal, todoToEdit}) => {
     }
   return (
     <>
-    <div onClick={handleCancle} className='bg-[#161622] opacity-[.85] absolute top-0 h-[95vh] flex justify-center items-center w-full z-[2] ' >
+    <div onClick={handleCancle} className=' bg-[#161622] opacity-[.85] absolute top-0 h-[95vh] flex justify-center items-center w-full z-[2] ' >
        
     </div>
-    <div className='bg-[#191920] fixed left-10 right-10 mx-auto top-[30%] z-[10] py-10 px-10 sm:px-20 rounded-2xl border-[1px] border-[#A6B2BC]'>
+    <div className='w-fit bg-[#191920] fixed left-10 right-10 mx-auto top-[30%] z-[10] py-10 px-10 sm:px-20 rounded-2xl border-[1px] border-[#A6B2BC]'>
        <div>
         <label className='text-[20px] sm:text-[2rem] text-white font-bold' htmlFor="title">Edit Todo:</label>
         <br/>
-        <input  onKeyUp={handleKeyUp} onChange={handleOnChange} className='text-base sm:text-[20px] w-[230px] sm:w-[800px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" value={title}  />
+        <input  onKeyUp={handleKeyUp} onChange={handleOnChange} className='text-base sm:text-[20px] w-[230px] sm:w-[600px] mt-10 py-3 pl-3 rounded-xl' name='title' id='title' type="text" value={title}  />
         </div>
         <div className='flex flex-col mt-7'>
           <h4 className='font-bold text-white mb-3'>
