@@ -2,14 +2,19 @@
 
 
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {toast} from 'react-hot-toast'
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from 'react-router-dom';
+import TodoContext from '../context/Todo/TodoContext';
+
 
 const Login = () => {
-    const [cookies, setCookie] = useCookies();
     // console.log(cookies)
+    const todoContext = useContext(TodoContext);
+
+    const {cookieState, setCookieState, setCookie, cookies} = todoContext;
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +23,6 @@ const Login = () => {
     const navigate = useNavigate()
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        try{
 
             if( !email || !password){
                 toast.error("All FEILDS are compulsory")
@@ -35,16 +39,27 @@ const Login = () => {
                 password
             })
             console.log(res)
-            setCookie('token',res.data.token)
-            navigate('/')
-            toast.success("Logged In")
 
-        }
-        catch(err){
-            // console.log(err)
-            // alert("email exits")
-            toast.error('Wrong credentials please try again');
-        }
+            if(res.data.success){
+                
+                setCookie('token',res.data.token)
+                navigate('/')
+                toast.success("Logged In")
+                
+            }
+            else{
+                toast.error("please enter valid credentials")
+            }
+          
+
+            // setCookieState(cookies)
+            // if(res.data.token){
+            // }
+
+                
+
+
+       
     }
 
   

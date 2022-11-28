@@ -5,19 +5,22 @@ import { useCookies } from "react-cookie";
 
 const TodoState = (props)=>{    
     const [cookies, setCookie] = useCookies();
+    const [cookieState, setCookieState] = useState(cookies);
+
 
     const [todos, setTodos] = useState([]);
     const headers = {
         'Content-Type': 'application/json',
-        'token': `${cookies.token}`
+        'token': cookies.token
       }
 
     // getting todos 
     const getTodos = async()=>{
+        // console.log(headers)//no cookie 
         const res = await axios.get(`${process.env.REACT_APP_API}/getTodos`,{
             headers
         });
-        // console.log(res.data.todos);
+        console.log(res.data.todos);
         setTodos(res.data.todos) 
     }
 
@@ -66,7 +69,7 @@ const TodoState = (props)=>{
 
     return(
 
-        <TodoContext.Provider value={{getTodos,setTodos, todos, createTodo, deleteTodo, editTodo}}>
+        <TodoContext.Provider value={{getTodos,setTodos, todos, createTodo, deleteTodo, editTodo,cookieState, setCookieState, setCookie, cookies}}>
             {
                 props.children
             }

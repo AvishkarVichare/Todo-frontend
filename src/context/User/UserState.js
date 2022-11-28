@@ -6,6 +6,7 @@ import UserContext from "./UserContext"
 const UserState = (props)=>{
     const [cookies, setCookie] = useCookies();
     const [user, setUser] = useState({});
+    // const [token , setToken] = 
 
     const headers = {
         'Content-Type': 'application/json',

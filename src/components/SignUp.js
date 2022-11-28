@@ -13,7 +13,6 @@ const SignUp = () => {
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
 
             if (!name || !email || !password) {
                 toast.error("All FEILDS are compulsory")
@@ -31,16 +30,18 @@ const SignUp = () => {
                 password
             })
 
-            setCookie('token',res.data.token)
-            
-            navigate('/')
-            toast.success("Signed Up")
-        }
-        catch (err) {
-            // console.log(err)
-            // alert("email exits")
-            toast.error('Email Already EXISTS');
-        }
+
+            if(res.data.success){
+                
+                setCookie('token',res.data.token)
+                navigate('/')
+                toast.success("Logged In")
+                
+            }
+            else{
+                toast.error("please enter valid credentials")
+            }
+      
     }
 
 

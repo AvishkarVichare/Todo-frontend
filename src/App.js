@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import MainScreen from './components/MainFront/MainScreen'
 import SideMenu from './components/MainFront/SideMenu'
@@ -22,7 +22,6 @@ const App = () => {
 
 
   const location = useLocation();
-  const [cookies, setCookie] = useCookies();
   const navigate = useNavigate()
   // console.log("htis ",cookies)
   
@@ -89,6 +88,8 @@ const App = () => {
           </SpinnerState>
         </TaskState>
       </TodoState>
+
+    
 
     </>
   )

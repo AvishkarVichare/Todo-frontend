@@ -14,7 +14,7 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
   const {getTodos, todos} = todoContext;
   const navigate = useNavigate()
   const {isLoading, setIsLoading} = spinnerContext
-  const [cookies, setCookie] = useCookies();
+  const [cookies, setCookie, cookieState] = useCookies();
   const location = useLocation()
   
   // const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +24,7 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
       console.log("first")
       navigate('/signup')
     }
+    console.log("In todo display")
 
     setIsLoading(true);
 
@@ -41,7 +42,7 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
     
   }
 
-  // console.log(todos)
+  // console.log(cookies.token)
 
   return (
     <>
@@ -52,19 +53,20 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
 
       <Search/>
 
-        <div className='  flex flex-wrap gap-[20px] sm:gap-[80px] my-20 mt-8 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
+            <div className='  flex flex-wrap gap-[20px] sm:gap-[80px] my-20 mt-8 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
             {
-              isLoading || !todos || todos.length===0 ?<div className='absolute top-[50%] sm:left-[50%]'>
-            {todos.length===0 && <h1 className='text-[#fd77a1] font-bold'>No todos</h1>}
+              isLoading  || todos?.length===0 ?(<div className='absolute top-[50%] sm:left-[50%]'>
+            {todos?.length===0 && <h1 className='text-[#fd77a1] font-bold'>No todos</h1>}
 
               <Spinner isLoading={true} />
-            </div>:todos.map(element=>{
+            </div>):todos.map(element=>{
                 return(
                 <TodoCard key={element._id} todo={element} setShowEditTodoModal={setShowEditTodoModal} todoToEdit={todoToEdit} />
                 )
               })
             }
         </div>
+          
 
         {/* add button  */}
 
