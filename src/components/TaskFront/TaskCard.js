@@ -1,16 +1,42 @@
 import React, { useContext, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import SpinnerContext from '../../context/Spinner/SpinnerContext';
 import TaskContext from '../../context/Task/TaskContext';
 
-const TaskCard = (task) => {
+const TaskCard = ({task, setShowEditTaskModal, setTaskIdforEdit}) => {
 
   const taskContext = useContext(TaskContext);
-  const {checkTask, tasks} = taskContext;
+  const {checkTask, tasks, deleteTask} = taskContext;
   const todoId = useParams();
+  const spinnerContext = useContext(SpinnerContext);
+  const {isLoading, setIsLoading} = spinnerContext
+
+  const handleDelete = ()=>{
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000);
+
+    deleteTask(todoId.todoId, task._id)
+  }
 
   const handleCheck = ()=>{
-    checkTask(todoId.todoId,task.task._id)
 
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000);
+
+    checkTask(todoId.todoId,task._id)
+
+  }
+
+  const handleClickOnEdit = ()=>{
+    setTaskIdforEdit(task._id)
+    setShowEditTaskModal(true);
   }
 // console.log("first")
   return (
@@ -21,7 +47,7 @@ const TaskCard = (task) => {
        <button onClick={handleCheck}>
          <div  className='border-[4px] px-2 py-2 rounded-lg border-[#fd77a1] h-[16px] w-[16px] relative'>
 
-         <div style={task.task.checked?{
+         <div style={task.checked?{
           display:'block'
          }:{
           display:'none'
@@ -31,16 +57,16 @@ const TaskCard = (task) => {
         </button>
             <h4 className='text-[#c2c2c5] text-[1.2rem]'>
             {
-            task.task.main
+            task.main
             }
         </h4>
         </div>
 
             <div className='flex text-white gap-6 font-bold mx-3'>
-            <button className='text-[#419796]'>
+            <button onClick={handleClickOnEdit} className='text-[#419796]'>
                 Edit
             </button>
-            <button className='text-[#fd77a1]'>
+            <button onClick={handleDelete} className='text-[#fd77a1]'>
                 delete
             </button>
             </div>
@@ -53,7 +79,7 @@ const TaskCard = (task) => {
             </span>
             <span>
             {
-              new Date(task.task.taskcreatedat).toUTCString()
+              new Date(task.taskcreatedat).toUTCString()
             }
             </span>
         </h4>
@@ -64,7 +90,7 @@ const TaskCard = (task) => {
             <span>
             {
               
-              new Date(task.task.taskupdatedAt).toUTCString()
+              new Date(task.taskupdatedAt).toUTCString()
               
             }
             </span>

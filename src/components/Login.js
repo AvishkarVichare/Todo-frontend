@@ -37,6 +37,8 @@ const Login = () => {
             console.log(res)
             setCookie('token',res.data.token)
             navigate('/')
+            toast.success("Logged In")
+
         }
         catch(err){
             // console.log(err)

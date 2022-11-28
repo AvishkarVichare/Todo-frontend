@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import TrashLogo from '../../assets/trash.svg'
 import EditLogo from '../../assets/edit.png'
 import TodoContext from '../../context/Todo/TodoContext'
-
+import SpinnerContext from '../../context/Spinner/SpinnerContext'
+import {toast} from 'react-hot-toast'
 const TodoCard = ({todo, setShowEditTodoModal, todoToEdit}) => {
+  const spinnerContext = useContext(SpinnerContext);
+  const {isLoading, setIsLoading} = spinnerContext
 
   const navigate = useNavigate();
   const todoContext = useContext(TodoContext);
@@ -15,13 +18,24 @@ const TodoCard = ({todo, setShowEditTodoModal, todoToEdit}) => {
   }
 
   const handleDelete = (todoId)=>{
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000);
+    console.log("in todo display useeffect")
+
     deleteTodo(todoId);
     console.log("first")
+    toast.success("TODO DELETED successfully")
+
   }
 
   const handleEdit = ()=>{
+    
     setShowEditTodoModal(true)
     todoToEdit.current = todo;
+
   }
 
 

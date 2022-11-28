@@ -5,6 +5,7 @@ import TaskCard from './TaskCard'
 import { useNavigate, useParams } from 'react-router-dom'
 import TaskContext from '../../context/Task/TaskContext'
 import TaskModal from '../modals/TaskModal'
+import EditTaskModal from '../modals/EditTaskModal'
 import Spinner from '../Spinner'
 import SpinnerContext from '../../context/Spinner/SpinnerContext'
 import TodoContext from '../../context/Todo/TodoContext'
@@ -17,8 +18,13 @@ const TaskScreen = () => {
   const { todoId, todoTitle } = useParams()
   const spinnerContext = useContext(SpinnerContext);
   const { isLoading, setIsLoading } = spinnerContext
+const [taskIdforEdit, setTaskIdforEdit] = useState("");
 
+  const [showEditTaskModal, setShowEditTaskModal] = useState(false);
+  // setShowEditTaskModal(true)
+  // console.log("showedit",showEditTaskModal)
   const [showTaskModal, setShowTaskModal] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -89,8 +95,9 @@ const TaskScreen = () => {
 
 
 
-        {isLoading ? (
+        {isLoading || !tasks || tasks.length===0 ? (
           <div className='absolute top-[50%] left-[50%]'>
+            {tasks.length===0 && <h1 className='text-[#fd77a1] font-bold'>No tasks</h1>}
             <Spinner isLoading={true} />
           </div>
         ) : (
@@ -110,7 +117,7 @@ const TaskScreen = () => {
                     return e.checked != true;
                   }).map(element => {
                     return (
-                      <TaskCard key={element._id} task={element} />
+                        <TaskCard key={element._id} task={element} setShowEditTaskModal={setShowEditTaskModal} setTaskIdforEdit={setTaskIdforEdit} />
                     )
                   })
                 }
@@ -132,7 +139,7 @@ const TaskScreen = () => {
                     return e.checked == true;
                   }).map(element => {
                     return (
-                      <TaskCard key={element._id} task={element} />
+                      <TaskCard  key={element._id} task={element} setShowEditTaskModal={setShowEditTaskModal} setTaskIdforEdit={setTaskIdforEdit}  />
                     )
                   })
                 }
@@ -146,6 +153,9 @@ const TaskScreen = () => {
 
       {
         showTaskModal && <TaskModal setShowTaskModal={setShowTaskModal} />
+      }
+      {
+        showEditTaskModal && <EditTaskModal taskIdforEdit={taskIdforEdit} setShowEditTaskModal={setShowEditTaskModal} />
       }
 
     </div>

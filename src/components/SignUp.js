@@ -34,6 +34,7 @@ const SignUp = () => {
             setCookie('token',res.data.token)
 
             navigate('/')
+            toast.success("Signed Up")
         }
         catch (err) {
             // console.log(err)

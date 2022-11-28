@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import SpinnerContext from '../../context/Spinner/SpinnerContext';
 import TodoContext from '../../context/Todo/TodoContext';
+import {toast} from 'react-hot-toast'
 
 const TodoModal = ({setShowTodoModal}) => {
 
@@ -14,8 +15,11 @@ const TodoModal = ({setShowTodoModal}) => {
 
     const handleDone = ()=>{
 
-      if(!title)
-        alert("enter tilet")
+      if(!title){
+        toast.error("title cant be empty")
+        return;
+      }
+        
 
         setIsLoading(true);
 
@@ -24,6 +28,8 @@ const TodoModal = ({setShowTodoModal}) => {
         }, 500);
         setShowTodoModal(false);
         createTodo(title, color);
+        toast.success("TODO Added successfully")
+
     }
 
     const handleCancle = ()=>{

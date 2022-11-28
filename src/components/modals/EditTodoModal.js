@@ -18,6 +18,14 @@ const EditTodoModal = ({setShowEditTodoModal, todoToEdit}) => {
         if(title.length===0)
             alert("no empty title   ")
 
+
+            
+            setIsLoading(true);
+
+            setTimeout(() => {
+              setIsLoading(false)
+            }, 2000);
+            console.log("in todo display useeffect")
         editTodo(todoToEdit.current._id,{
             title,
             color
