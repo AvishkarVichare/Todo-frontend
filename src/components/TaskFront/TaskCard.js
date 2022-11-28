@@ -55,11 +55,13 @@ const TaskCard = ({task, setShowEditTaskModal, setTaskIdforEdit}) => {
 
          </div>
         </button>
-            <h4 className='text-[#c2c2c5] text-[1.2rem]'>
+           <div className=''>
+           <h4 className='text-[#c2c2c5] text-[1.2rem] overflow-hidden w-[150px] sm:w-full'>
             {
-            task.main
+            task.main.length>70?task.main.slice(0,70).concat('...'):task.main
             }
         </h4>
+           </div>
         </div>
 
             <div className='flex text-white gap-6 font-bold mx-3'>

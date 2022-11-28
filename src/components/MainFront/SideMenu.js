@@ -24,7 +24,7 @@ const {tasks} = taskContext
   // console.log(tasks)
   
   return (
-    <div className='w-[20vw] h-[95vh] bg-[#21212b] border-2 border-[#191920]'>
+    <div className='hidden sm:block w-[20vw] h-[95vh] bg-[#21212b] border-2 border-[#191920]'>
         <h1 className='text-[#bbbabf] font-bold text-[1.4rem] ml-8 mt-8'>
           TODOs
         </h1>

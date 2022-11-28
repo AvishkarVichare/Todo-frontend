@@ -47,14 +47,14 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
     <>
 
    
-    <div className=' h-[95vh] w-[80vw] flex flex-col items-center justify-center bg-[#191920] relative'>
+    <div className=' h-[95vh] w-[100vw] sm:w-[80vw] flex flex-col items-center justify-center bg-[#191920] relative'>
 
 
       <Search/>
 
-        <div className='  flex flex-wrap gap-[80px] my-20 mt-8 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
+        <div className='  flex flex-wrap gap-[20px] sm:gap-[80px] my-20 mt-8 mb-10 w-[80%] h-[90vh] justify-center py-10 overflow-y-scroll'>
             {
-              isLoading || !todos || todos.length===0 ?<div className='absolute top-[50%] left-[50%]'>
+              isLoading || !todos || todos.length===0 ?<div className='absolute top-[50%] sm:left-[50%]'>
             {todos.length===0 && <h1 className='text-[#fd77a1] font-bold'>No todos</h1>}
 
               <Spinner isLoading={true} />
@@ -68,8 +68,8 @@ const TodoDisplay = ({setShowTodoModal, setShowEditTodoModal, todoToEdit}) => {
 
         {/* add button  */}
 
-        <button onClick={handleAdd} className='bg-[#fd77a1] rounded-[50%] px-4 py-4 absolute right-20 bottom-6 duration-200 ease-in-out hover:bg-[#ac2e56]'>
-          <img className='invert  h-[40px]' src={addLogo} alt="" />
+        <button onClick={handleAdd} className='bg-[#fd77a1] rounded-[50%] px-4 py-4 absolute right-6 sm:right-20 bottom-2 sm:bottom-6 duration-200 ease-in-out hover:bg-[#ac2e56]'>
+          <img className='invert h-[20px] sm:h-[40px]' src={addLogo} alt="" />
         </button>
 
 

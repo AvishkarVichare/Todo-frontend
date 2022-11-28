@@ -20,11 +20,11 @@ const NavBar = () => {
     
   return (
     <>
-    <nav className='flex justify-between items-center h-[5vh] px-10 text-[#bcbcbf] bg-[#21212b]'>
-        <div className=''>
+    <nav className='flex justify-between items-center h-[5vh] px-2 sm:px-10 text-[#bcbcbf] bg-[#21212b]'>
+        <div className='sm:block hidden'>
         <span>{user && user.email}</span>        </div>
         <div>
-            <h1 className='text-[1.3rem] font-bold'>
+            <h1 className='text-[14px] sm:text-[1.3rem] font-bold'>
                 TO-DOs
             </h1>
         </div>
@@ -32,7 +32,7 @@ const NavBar = () => {
            <Link to='/profile'>
           <div className='flex gap-2'>
                 
-          <h4 className='bg-[#fd77a1] text-white px-4 rounded-xl duration-200 ease-in-out hover:bg-[#ac2e56]'>
+          <h4 className='bg-[#fd77a1] text-white sm:text-base text-[14px]  px-4 rounded-xl duration-200 ease-in-out hover:bg-[#ac2e56] font-bold'>
                { user && user.name}
             </h4>
           </div>

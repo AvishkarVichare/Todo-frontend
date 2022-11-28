@@ -51,7 +51,7 @@ const Search = () => {
     },[search])
   return (
     <div className='w-full mt-8'>
-        <input className='bg-[#191920] border-4 border-[#21202a] text-[#fd77a1] w-[70%] py-1 px-2 text-[20px] rounded-xl block mx-auto' placeholder='Search..' name='search' id='search' onChange={handleOnchange} type="text" />
+        <input className='bg-[#191920] border-4 border-[#21202a] text-[#fd77a1] w-[70%] py-1 px-2 text-[12px] sm:text-[20px] rounded-xl block mx-auto' placeholder='Search..' name='search' id='search' onChange={handleOnchange} type="text" />
     </div>
   )
 }
